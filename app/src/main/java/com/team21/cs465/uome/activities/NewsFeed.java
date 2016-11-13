@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -95,7 +96,26 @@ public class NewsFeed extends AppCompatActivity
 
 
     public void favorClicked(View v){
+
         System.out.println("Favor clicked");
+    }
+
+    public void likeClicked(View v){
+        LinearLayout c = (LinearLayout)v.getParent();
+        Button like_label = (Button)c.findViewById(R.id.news_like_name);
+
+        if (v.getBackground().getConstantState()==getResources().getDrawable(R.drawable.like_icon).getConstantState()){
+            v.setBackgroundResource(R.drawable.like_icon_blue);
+            like_label.setText("Collin W."); //TODO - replace Collin W. with actual user's name
+        }
+        else{
+            v.setBackground(getResources().getDrawable(R.drawable.like_icon));
+            like_label.setText("");
+        }
+    }
+
+    public void likedNamesClicked(View v){
+
     }
 
 
