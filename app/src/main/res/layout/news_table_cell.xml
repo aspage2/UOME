@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/favor_cell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/news_requester"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Rohit S. awarded Collin W. 5 points for:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="Driving me to class"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal"
+    android:gravity="center">
+    <Button
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/like_icon"
+        android:textColor="#FFFFFF"
+        android:onClick="likeClicked"/>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:background="@android:color/transparent"
+        android:text="Collin W."
+        android:textSize="10sp"
+        android:textColor="#000000"
+        android:gravity="left|center_vertical"
+        android:onClick="likeClicked"/>
+
+    <Button
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/comment_icon"
+        android:textColor="#FFFFFF"
+        android:onClick="commentClicked"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:background="@android:color/transparent"
+        android:text="3 comments"
+        android:textSize="10sp"
+        android:textColor="#000000"
+        android:gravity="left|center_vertical"
+        android:onClick="commentClicked"/>
+
+</LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryLight">
+
+    </View>
+
+
+
+
+
+</LinearLayout>

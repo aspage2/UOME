@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/uomelogo"
+            app:srcCompat="@drawable/uome_logo"
             android:id="@+id/image_logo"
             android:layout_weight="1" />
     </TableRow>
