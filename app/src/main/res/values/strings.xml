@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">U O ME</string>
+
+    <string-array name="navigation_items">
+        <item>My Profile</item>
+        <item>Friends</item>
+        <item>Favor Feed</item>
+        <item>News Feed</item>
+    </string-array>
 </resources>
