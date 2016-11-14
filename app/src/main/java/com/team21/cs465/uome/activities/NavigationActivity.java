@@ -14,7 +14,8 @@ public class NavigationActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-
+        for (int id : new int[]{R.id.button_favor_feed, R.id.button_my_profile, R.id.button_friend_list, R.id.button_news_feed})
+            findViewById(id).setOnClickListener(this);
     }
 
     @Override
