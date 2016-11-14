@@ -1,44 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/colorPrimaryLight">
-
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/navigation_icon"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:text="Favor Feed"
-            android:textSize="30sp"
-            android:textColor="@android:color/white"
-            android:gravity="center"
-            android:layout_centerHorizontal="true">
-        </TextView>
-    </RelativeLayout>
-
-
-
-    <ListView
-        android:id="@+id/favor_table"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DFDFDF">
-    </ListView>
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/colorPrimaryLight">
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/navigation_icon"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:text="Favor Feed"
+                android:textSize="30sp"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_centerHorizontal="true">
+            </TextView>
+        </RelativeLayout>
 
 
 
+        <ListView
+            android:id="@+id/favor_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#DFDFDF">
+        </ListView>
 
-</LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/favor_detail_backview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:alpha="0.7"
+            android:clickable="true"
+            android:onClick="hideDetails"/>
+
+        <LinearLayout
+            android:id="@+id/favor_detail_view"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:alpha="1.0"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:onClick="doNothing">
+
+            <TextView
+                android:id="@+id/favor_detail_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/favor_detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/favor_detail_points"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/favor_detail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</FrameLayout>

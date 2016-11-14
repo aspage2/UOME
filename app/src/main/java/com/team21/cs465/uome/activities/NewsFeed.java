@@ -115,7 +115,11 @@ public class NewsFeed extends AppCompatActivity
     }
 
     public void likedNamesClicked(View v){
+        // TODO - show a list of who liked the post
+    }
 
+    public void commentClicked(View v){
+        // TODO - show separate view for users to leave/view comments
     }
 
 
