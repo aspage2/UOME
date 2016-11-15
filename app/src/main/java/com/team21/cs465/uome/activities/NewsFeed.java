@@ -2,12 +2,15 @@ package com.team21.cs465.uome.activities;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +39,33 @@ public class NewsFeed extends AppCompatActivity
         favorfeedAdapter adapter = new favorfeedAdapter(this, newsData);
         favorList.setAdapter(adapter);
 
+        insertActionBar("News Feed");
+
+    }
+
+    public void insertActionBar(String title){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        View customView = getLayoutInflater().inflate(R.layout.action_bar, null);
+        TextView titleview = (TextView)customView.findViewById(R.id.action_bar_title);
+        titleview.setText(title);
+        customView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+        actionBar.setCustomView(customView);
+        Toolbar parent =(Toolbar) customView.getParent();
+        parent.setPadding(0,0,0,0);
+        parent.setContentInsetsAbsolute(0,0);
+
+        Button navButton = (Button)customView.findViewById(R.id.nav_button);
+        navButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        System.out.println("Navigation button clicked");
+                    }
+                }
+        );
     }
 
     public void fillNewsData(ArrayList<News> data){
