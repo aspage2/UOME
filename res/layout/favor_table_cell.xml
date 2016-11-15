@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/favor_cell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/favor_requester"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Rohit S. is offering 5 points for:"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/favor_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="Driving me to class"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:gravity="center"
+        />
+
+
+    <Button
+        android:id="@+id/favor_accept_button"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Accept"
+        android:textColor="#FFFFFF" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryLight">
+
+    </View>
+
+
+
+
+
+</LinearLayout>
