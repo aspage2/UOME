@@ -1,0 +1,69 @@
+package com.team21.cs465.uome;
+
+import java.util.ArrayList;
+
+public class User {
+    private String fName;
+    private String lName;
+    private String password;
+    private ArrayList<Transaction> history;
+    private ArrayList<User> friends;
+    private String userTag;
+    private int userProfileResource;
+    private int level;
+    private int progress;
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public ArrayList<Transaction> getHistory() {
+        return history;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserTag() {
+        return userTag;
+    }
+
+    public int getLevel () { return level; }
+
+    public ArrayList<User> getFriends () { return friends; }
+
+    public int getUserProfileResource() {
+        return userProfileResource;
+    }
+
+    public User (String fName, String lName, String password, String userTag, int level, int progress, int profilePicResource)
+    {
+        this.userProfileResource = profilePicResource;
+
+        this.fName = fName;
+        this.lName = lName;
+        this.password = password;
+        this.userTag = userTag;
+        this.level = level;
+        this.progress = progress;
+        this.history = new ArrayList<>();
+        this.friends = new ArrayList<>();
+    }
+
+    public void addFriend (User other)
+    {
+        if (friends.contains(other))
+            return;
+        friends.add (other);
+        other.getFriends().add(this);
+    }
+}

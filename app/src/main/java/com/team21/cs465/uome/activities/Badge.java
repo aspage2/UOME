@@ -4,10 +4,6 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-/**
- * Created by ananya on 11/14/2016.
- */
-
 public class Badge extends Object{
     public String name;
     public boolean achieved;

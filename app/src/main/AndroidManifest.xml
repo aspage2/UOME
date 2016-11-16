@@ -22,7 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.NavigationActivity"></activity>
+        <activity android:name=".activities.NavigationActivity" />
+        <activity android:name=".activities.FavorFeed" />
+        <activity android:name=".activities.NewsFeed" />
+        <activity android:name=".activities.UserProfile" />
+        <activity android:name=".activities.FriendList" />
+        <activity android:name=".activities.RequestActivity"></activity>
     </application>
 
 </manifest>

@@ -8,12 +8,12 @@ import android.widget.Toast;
 import com.team21.cs465.uome.CustomActionBarActivity;
 import com.team21.cs465.uome.R;
 
-public class CreateFavor extends CustomActionBarActivity {
+public class RequestActivity extends CustomActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_favor);
+        setContentView(R.layout.activity_request);
         setupActionBar("Create a Favor", false);
 
         findViewById(R.id.button_create_favor).setOnClickListener(this);

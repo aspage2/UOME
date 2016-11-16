@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/content_user_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.team21.cs465.uome.activities.UserProfile"
+    >
+    <TextView
+        android:text="Full Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quickButtonsDivider"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-black"
+        android:textSize="35sp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/fullName" />
+    <TextView
+        android:text="User Tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fullName"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-black"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/userName"
+        android:layout_marginBottom="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="125dp"
+
+            android:id="@+id/image_user_profile"
+            android:layout_below="@+id/userName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1" />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:text="Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/levelNum"
+                android:layout_alignEnd="@+id/levelText"
+                android:id="@+id/text_level_desc"
+                android:layout_alignStart="@+id/levelText"
+                android:textAlignment="center" />
+
+            <TextView
+                android:text="##"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:textSize="35sp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/levelNum"
+                android:layout_below="@+id/levelText"
+                android:layout_alignEnd="@+id/levelText"
+                android:layout_alignStart="@+id/levelText"
+                android:textAlignment="center" />
+
+            <TextView
+                android:text="Level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:textSize="35sp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/levelText"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/text_level_desc"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress_user_level"
+                android:max="35" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        style="@style/divider"
+        android:layout_marginTop="17dp" />
+
+    <TextView
+        android:text="Badges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/badges"
+        android:fontFamily="sans-serif-black"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center" />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                style="@style/badge"
+                app:srcCompat="@drawable/car"/>
+
+            <ImageView
+                style="@style/badge"
+                app:srcCompat="@drawable/heart"/>
+
+            <ImageView
+                style="@style/badge"
+                app:srcCompat="@drawable/hourglass_icon"/>
+
+            <ImageView
+                style="@style/badge"
+                app:srcCompat="@drawable/man" />
+
+            <ImageView
+                style="@style/badge"
+                app:srcCompat="@drawable/peace" />
+
+            <ImageView
+                style="@style/badge"
+                app:srcCompat="@drawable/star" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <View style="@style/divider" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/layout_user_activity"/>
+    </ScrollView>
+
+</LinearLayout>

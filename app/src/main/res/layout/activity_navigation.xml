@@ -21,7 +21,7 @@
         android:text="My Profile"
         android:textAllCaps="false"
         android:textSize="21sp" />
-    <View style="@style/Divider"/>
+    <View style="@style/divider"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         android:textAllCaps="false"
         android:textSize="21sp"
         android:id="@+id/button_friend_list" />
-    <View style="@style/Divider"/>
+    <View style="@style/divider"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:textAllCaps="false"
         android:textSize="21sp"
         android:id="@+id/button_favor_feed" />
-    <View style="@style/Divider" />
+    <View style="@style/divider" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,4 +54,15 @@
         android:textAllCaps="false"
         android:textSize="21sp"
         android:id="@+id/button_news_feed" />
+    <View style="@style/divider"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:text="Make a Favor"
+        android:textAllCaps="false"
+        android:textSize="21sp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/button_create_favor"/>
 </LinearLayout>

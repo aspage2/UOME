@@ -2,30 +2,30 @@ package com.team21.cs465.uome.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.team21.cs465.uome.CustomActionBarActivity;
+import com.team21.cs465.uome.Favor;
 import com.team21.cs465.uome.R;
+import com.team21.cs465.uome.Transaction;
 
 import java.util.ArrayList;
 
+import static com.team21.cs465.uome.Data.*;
 /**
  * Created by Collin on 11/12/16.
  *
  * The Favor Feed controller. Displays a list of favors that a user can choose to accept
  */
 
-public class NewsFeed extends AppCompatActivity
+public class NewsFeed extends CustomActionBarActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,61 +34,30 @@ public class NewsFeed extends AppCompatActivity
 
 
         ListView favorList = (ListView) findViewById(R.id.news_table);
-        ArrayList<News> newsData = new ArrayList<News>();
+        ArrayList<Transaction> newsData = new ArrayList<Transaction>();
         fillNewsData(newsData);
         favorfeedAdapter adapter = new favorfeedAdapter(this, newsData);
         favorList.setAdapter(adapter);
 
-        insertActionBar("News Feed");
-
+        setupActionBar("Transaction Feed", true);
     }
 
-    public void insertActionBar(String title){
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
-        View customView = getLayoutInflater().inflate(R.layout.action_bar, null);
-        TextView titleview = (TextView)customView.findViewById(R.id.action_bar_title);
-        titleview.setText(title);
-        customView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
-        actionBar.setCustomView(customView);
-        Toolbar parent =(Toolbar) customView.getParent();
-        parent.setPadding(0,0,0,0);
-        parent.setContentInsetsAbsolute(0,0);
-
-        Button navButton = (Button)customView.findViewById(R.id.nav_button);
-        navButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        System.out.println("Navigation button clicked");
-                    }
-                }
-        );
-    }
-
-    public void fillNewsData(ArrayList<News> data){
+    public void fillNewsData(ArrayList<Transaction> data){
         // Where we would normally fetch data from a database...
 
-        News n1 = new News("Rohit S.", "Collin W.", 4, "Driving me to class");
-        News n2 = new News("Alex P.", "Rohit S.", 1, "Lending a pencil");
-        News n3 = new News("Ananya C.", "Ravid C.", 6, "Doing my math assignment");
-        News n4 = new News("Ravid C.", "Rohit S.", 3, "Driving me to work");
-
-        data.add(n1);
-        data.add(n2);
-        data.add(n3);
-        data.add(n4);
+        data.add(new Transaction(new Favor(ROHIT, 4, "Driving me to class"),COLLIN));
+        data.add(new Transaction(new Favor (ALEX, 1, "Lending a pencil"), ROHIT));
+        data.add(new Transaction(new Favor (ANANYA, 6, "Doing my math homework"), RAVID));
+        data.add(new Transaction(new Favor (RAVID, 3, "Driving me to work"), ROHIT));
     }
 
 
     public class favorfeedAdapter extends BaseAdapter{
         private Context mContext;
         private LayoutInflater mInflater;
-        private ArrayList<News> dataSource;
+        private ArrayList<Transaction> dataSource;
 
-        public favorfeedAdapter(Context context, ArrayList<News> items) {
+        public favorfeedAdapter(Context context, ArrayList<Transaction> items) {
             mContext = context;
             dataSource = items;
             mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -113,12 +82,12 @@ public class NewsFeed extends AppCompatActivity
         @Override
         public View getView(int i, View view, ViewGroup parent) {
             LinearLayout newsCell = (LinearLayout) mInflater.inflate(R.layout.news_table_cell, parent, false);
-            News n = dataSource.get(i);
+            Transaction n = dataSource.get(i);
 
             TextView newsRequester = (TextView)newsCell.findViewById(R.id.news_requester);
-            newsRequester.setText(n.requester + " awarded " + n.receiver + " " + n.points + " points for:");
+            newsRequester.setText(n.getFavor().getRequester ().getfName() + " awarded " + n.getAcceptor().getfName() + " " + n.getFavor().getPoints() + " points for:");
             TextView favorTitle = (TextView)newsCell.findViewById(R.id.news_title);
-            favorTitle.setText(n.favor);
+            favorTitle.setText(n.getFavor().getFavorTitle());
 
             return newsCell;
         }
