@@ -7,8 +7,9 @@
     android:id="@+id/layout_friend_list">
 
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:scrollbars="vertical"
+        android:id="@+id/friend_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/list_user_names" />
+        android:layout_height="match_parent" />
 </LinearLayout>

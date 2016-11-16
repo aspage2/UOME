@@ -7,12 +7,14 @@ public class User {
     private String lName;
     private String password;
     private ArrayList<Transaction> history;
+    private ArrayList<Favor> favors;
     private ArrayList<User> friends;
     private String userTag;
     private int userProfileResource;
     private int level;
     private int progress;
 
+    public ArrayList<Favor> getFavors () { return favors; }
     public int getProgress() {
         return progress;
     }
@@ -21,6 +23,30 @@ public class User {
         return history;
     }
 
+    public void addNewTransactionToHistory (Favor f, User acceptor)
+    {
+        if (!favors.contains(f))
+            return;
+        favors.remove(f);
+        history.add (new Transaction(f, acceptor));
+    }
+
+    public void createFavor (String title, int points)
+    {
+        favors.add (new Favor (this, points, title));
+    }
+
+    public boolean acceptFavor(Favor t)
+    {
+        progress += t.getPoints();
+        if (progress >= 35)
+        {
+            level ++;
+            progress = 35-progress+t.getPoints();
+            return true;
+        }
+        return false;
+    }
     public String getfName() {
         return fName;
     }
@@ -57,8 +83,13 @@ public class User {
         this.progress = progress;
         this.history = new ArrayList<>();
         this.friends = new ArrayList<>();
+        this.favors = new ArrayList<>();
     }
 
+    public String toString()
+    {
+        return fName + " " + lName;
+    }
     public void addFriend (User other)
     {
         if (friends.contains(other))

@@ -2,9 +2,6 @@ package com.team21.cs465.uome.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +12,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.team21.cs465.uome.CustomActionBarActivity;
 import com.team21.cs465.uome.Data;
 import com.team21.cs465.uome.Favor;
 import com.team21.cs465.uome.R;
+import com.team21.cs465.uome.User;
 
 import java.util.ArrayList;
 
@@ -34,6 +33,7 @@ public class FavorFeed extends CustomActionBarActivity
     ListView favorList;
     ArrayList<Favor> favorData;
     favorfeedAdapter adapter2;
+    User me;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class FavorFeed extends CustomActionBarActivity
 
         favorList = (ListView) findViewById(R.id.favor_table);
         favorData = new ArrayList<>();
+        me = Data.getUser(getIntent().getExtras().getString("USER.TAG"));
         fillFavorData(favorData);
         favorfeedAdapter adapter = new favorfeedAdapter(this, favorData);
         favorList.setAdapter(adapter);
@@ -52,16 +53,11 @@ public class FavorFeed extends CustomActionBarActivity
 
     public void fillFavorData(ArrayList<Favor> data){
         // Where we would normally fetch data from a database...
+        if (me == null)return;
+        for (User u : me.getFriends())
+            for (Favor f : u.getFavors())
+                data.add (f);
 
-        Favor f1 = new Favor(Data.getUser("rohitsaigal95"), 4, "Getting Pizza");
-        Favor f2 = new Favor(Data.getUser("cwalthe2"), 1, "Lending a pencil");
-        Favor f3 = new Favor(Data.getUser("ravidchi"), 6, "Doing my math assignment");
-        Favor f4 = new Favor(Data.getUser("ravidchi"), 3, "Driving me to work");
-
-        data.add(f1);
-        data.add(f2);
-        data.add(f3);
-        data.add(f4);
     }
 
 
@@ -98,9 +94,9 @@ public class FavorFeed extends CustomActionBarActivity
             Favor f = dataSource.get(i);
 
             TextView favorRequester = (TextView)favorCell.findViewById(R.id.favor_requester);
-            favorRequester.setText(f.getRequester().getfName() + " is offering " + f.getPoints()+ " points for:");
+            favorRequester.setText(f.getName (false) + " is offering " + f.getPoints()+ " points for:");
             TextView favorTitle = (TextView)favorCell.findViewById(R.id.favor_title);
-            favorTitle.setText(f.getFavorTitle());
+            favorTitle.setText(f.getTitle());
 
             final int index = i;
             Button acceptButton = (Button) favorCell.findViewById(R.id.favor_accept_button);
@@ -108,7 +104,10 @@ public class FavorFeed extends CustomActionBarActivity
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            favorData.remove(index);
+                            Favor f = favorData.remove(index);
+                            me.acceptFavor(f);
+                            f.getRequester ().addNewTransactionToHistory  (f, me);
+                            Toast.makeText(getApplicationContext(),"Favor Accepted!",Toast.LENGTH_SHORT).show();
                             notifyDataSetChanged();
                         }
                     }
@@ -138,8 +137,8 @@ public class FavorFeed extends CustomActionBarActivity
         TextView points = (TextView) findViewById(R.id.favor_detail_points);
         TextView description = (TextView) findViewById(R.id.favor_detail_description);
 
-        String nameText = "<b>" + "Name: " + "</b> " + fav.getRequester();
-        String favorText = "<b>" + "Favor: " + "</b> " + fav.getFavorTitle();
+        String nameText = "<b>" + "Name: " + "</b> " + fav.getName (true);
+        String favorText = "<b>" + "Favor: " + "</b> " + fav.getTitle();
         String pointText = "<b>" + "Points: " + "</b> " + fav.getPoints();
         String descriptionText = "<b>" + "Description: " + "</b> " + "Example description";
         name.setText(Html.fromHtml(nameText));

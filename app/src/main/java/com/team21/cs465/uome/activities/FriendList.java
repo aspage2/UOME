@@ -1,12 +1,11 @@
 package com.team21.cs465.uome.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.team21.cs465.uome.CustomActionBarActivity;
 import com.team21.cs465.uome.Data;
@@ -23,14 +22,14 @@ public class FriendList extends CustomActionBarActivity implements AdapterView.O
         setContentView(R.layout.activity_friend_list);
         setupActionBar("Friend List", true);
 
-        ListView view = (ListView)findViewById(R.id.list_user_names);
+
         Intent intent = getIntent();
         User user = Data.getUser(intent.getExtras().getString("USER.TAG"));
-        ArrayList<String> items = new ArrayList<>();
-        for (User u: user.getFriends())
-            items.add(u.getfName()+" "+u.getlName());
-        view.setAdapter (new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, items));
-        view.setOnItemClickListener(this);
+
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.friend_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new FriendListAdapter(user.getFriends()));
     }
 
     @Override

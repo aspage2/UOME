@@ -24,6 +24,6 @@ public class Transaction {
 
     public TransactionFragment getFragmentRepresentation ()
     {
-        return TransactionFragment.newInstance(favor.getRequester().getfName(), acceptor.getfName(), favor.getPoints(), favor.getFavorTitle());
+        return TransactionFragment.newInstance(favor.getName(false), acceptor.getfName(), favor.getPoints(), favor.getTitle());
     }
 }

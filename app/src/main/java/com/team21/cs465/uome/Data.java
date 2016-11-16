@@ -6,10 +6,11 @@ public class Data {
 
     private static ArrayList<User> users = null;
     public static User COLLIN, ROHIT, RAVID, ALEX, ANANYA;
+
     private static void initUsers ()
     {
         users = new ArrayList<>();
-        users.add (new User ("Rohit", "Saigal", "1234", "rohitsaigal95", 20, 34, R.drawable.profile_rohit));
+        users.add (new User ("Rohit", "Saigal", "1234", "rohitsaigal95", 20, 16, R.drawable.profile_rohit));
         ROHIT = users.get(0);
         users.add (new User ("Collin", "Walther", "1234", "cwalthe2", 26, 12, R.drawable.profile_collin));
         COLLIN = users.get(1);
@@ -17,7 +18,7 @@ public class Data {
         RAVID = users.get(2);
         users.add (new User ("Ananya", "Cleetus", "1234", "ananyacleetus", 12, 1, R.drawable.profile_ananya));
         ANANYA = users.get (3);
-        users.add (new User ("Alex", "Page", "1234", "aspage2", 1, 16, R.drawable.profile_alex));
+        users.add (new User ("Alex", "Page", "1234", "aspage2", 1, 34, R.drawable.profile_alex));
         ALEX = users.get (4);
 
         ROHIT.addFriend(COLLIN);
@@ -31,11 +32,14 @@ public class Data {
         COLLIN.addFriend (RAVID);
         COLLIN.addFriend (ALEX);
         COLLIN.getHistory().add (new Transaction(new Favor (COLLIN, 5, "Give me a ride"), ALEX));
-
+        COLLIN.getFavors().add (new Favor (COLLIN, 3, "Borrow a pencil"));
+        COLLIN.getFavors().add (new Favor (COLLIN, 6, "Give me a ride"));
         RAVID.addFriend (ANANYA);
+        RAVID.getHistory().add (new Transaction(new Favor (RAVID, 4, "Hook up my stereo system"), ANANYA));
+
 
         ANANYA.addFriend(ALEX);
-
+        ANANYA.getFavors().add (new Favor (ANANYA, 1, "Find my wallet"));
     }
 
     public static String describe (int level)

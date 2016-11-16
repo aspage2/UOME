@@ -12,9 +12,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.team21.cs465.uome.CustomActionBarActivity;
+import com.team21.cs465.uome.Data;
 import com.team21.cs465.uome.Favor;
 import com.team21.cs465.uome.R;
 import com.team21.cs465.uome.Transaction;
+import com.team21.cs465.uome.User;
 
 import java.util.ArrayList;
 
@@ -27,12 +29,13 @@ import static com.team21.cs465.uome.Data.*;
 
 public class NewsFeed extends CustomActionBarActivity
 {
+    User me;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_feed_view);
 
-
+        me = Data.getUser(getIntent().getExtras().getString("USER.TAG"));
         ListView favorList = (ListView) findViewById(R.id.news_table);
         ArrayList<Transaction> newsData = new ArrayList<Transaction>();
         fillNewsData(newsData);
@@ -44,11 +47,10 @@ public class NewsFeed extends CustomActionBarActivity
 
     public void fillNewsData(ArrayList<Transaction> data){
         // Where we would normally fetch data from a database...
+        for (User u : me.getFriends())
+            for (Transaction t : u.getHistory())
+                data.add (t);
 
-        data.add(new Transaction(new Favor(ROHIT, 4, "Driving me to class"),COLLIN));
-        data.add(new Transaction(new Favor (ALEX, 1, "Lending a pencil"), ROHIT));
-        data.add(new Transaction(new Favor (ANANYA, 6, "Doing my math homework"), RAVID));
-        data.add(new Transaction(new Favor (RAVID, 3, "Driving me to work"), ROHIT));
     }
 
 
@@ -85,9 +87,9 @@ public class NewsFeed extends CustomActionBarActivity
             Transaction n = dataSource.get(i);
 
             TextView newsRequester = (TextView)newsCell.findViewById(R.id.news_requester);
-            newsRequester.setText(n.getFavor().getRequester ().getfName() + " awarded " + n.getAcceptor().getfName() + " " + n.getFavor().getPoints() + " points for:");
+            newsRequester.setText(n.getFavor().getName(false) + " awarded " + n.getAcceptor().getfName() + " " + n.getFavor().getPoints() + " points for:");
             TextView favorTitle = (TextView)newsCell.findViewById(R.id.news_title);
-            favorTitle.setText(n.getFavor().getFavorTitle());
+            favorTitle.setText(n.getFavor().getTitle());
 
             return newsCell;
         }
@@ -105,7 +107,7 @@ public class NewsFeed extends CustomActionBarActivity
 
         if (v.getBackground().getConstantState()==getResources().getDrawable(R.drawable.like_icon).getConstantState()){
             v.setBackgroundResource(R.drawable.like_icon_blue);
-            like_label.setText("Collin W."); //TODO - replace Collin W. with actual user's name
+            like_label.setText(me.getfName()); //TODO - replace Collin W. with actual user's name
         }
         else{
             v.setBackground(getResources().getDrawable(R.drawable.like_icon));

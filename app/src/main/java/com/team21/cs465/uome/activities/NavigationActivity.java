@@ -45,13 +45,19 @@ public class NavigationActivity extends CustomActionBarActivity implements View.
                 startActivity (intent);
                 break;
             case R.id.button_favor_feed:
-                startActivity (new Intent(this, FavorFeed.class));
+                intent = new Intent (this, FavorFeed.class);
+                intent.putExtra ("USER.TAG", me.getUserTag());
+                startActivity (intent);
                 break;
             case R.id.button_news_feed:
-                startActivity (new Intent (this, NewsFeed.class));
+                intent = new Intent (this, NewsFeed.class);
+                intent.putExtra ("USER.TAG", me.getUserTag());
+                startActivity (intent);
                 break;
             case R.id.button_create_favor:
-                startActivity (new Intent (this, RequestActivity.class));
+                intent = new Intent (this, RequestActivity.class);
+                intent.putExtra ("USER.TAG", me.getUserTag());
+                startActivity (intent);
                 break;
             default:
                 super.onClick(v);

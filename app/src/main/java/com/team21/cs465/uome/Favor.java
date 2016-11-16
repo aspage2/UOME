@@ -2,27 +2,30 @@ package com.team21.cs465.uome;
 
 public class Favor {
 
-    public User getRequester() {
-        return requester;
+    public String getName (boolean full) {
+        if (!full)
+            return requester.getfName();
+        else
+            return requester.toString();
     }
 
     public int getPoints() {
         return points;
     }
 
-    public String getFavorTitle() {
-        return favorTitle;
+    public String getTitle() {
+        return title;
     }
 
     private User requester;
     private int points;
-    private String favorTitle;
-    private int idNum;
+    private String title;
 
+    public User getRequester () {return requester;}
     public Favor(User requester, int points, String favor){
         this.requester = requester;
         this.points = points;
-        this.favorTitle = favor;
+        this.title = favor;
     }
 
 
