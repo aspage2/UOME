@@ -65,4 +65,15 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:id="@+id/button_create_favor"/>
+    <View style="@style/divider"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Material.Button.Borderless"
+        android:text="My Favors"
+        android:textAllCaps="false"
+        android:textSize="21sp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/button_my_favors"/>
 </LinearLayout>

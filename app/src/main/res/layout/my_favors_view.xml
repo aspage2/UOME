@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/button_myJobs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="My Jobs"
+            android:onClick="filterClick"
+            />
+
+        <Button
+            android:id="@+id/button_myRequests"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="My Requests"
+            android:onClick="filterClick"
+            />
+
+    </LinearLayout>
+
+
+
+    <ListView
+        android:id="@+id/myfavors_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+
+
+
+
+</LinearLayout>

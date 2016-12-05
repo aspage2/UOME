@@ -2,6 +2,7 @@ package com.team21.cs465.uome.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ public class NavigationActivity extends CustomActionBarActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-        for (int id : new int[]{R.id.button_favor_feed, R.id.button_my_profile, R.id.button_friend_list, R.id.button_news_feed, R.id.button_create_favor})
+        for (int id : new int[]{R.id.button_favor_feed, R.id.button_my_profile, R.id.button_friend_list, R.id.button_news_feed, R.id.button_create_favor, R.id.button_my_favors})
             findViewById(id).setOnClickListener(this);
 
         setupActionBar("Welcome", false);
@@ -56,6 +57,12 @@ public class NavigationActivity extends CustomActionBarActivity implements View.
                 break;
             case R.id.button_create_favor:
                 intent = new Intent (this, RequestActivity.class);
+                intent.putExtra ("USER.TAG", me.getUserTag());
+                startActivity (intent);
+                break;
+            case R.id.button_my_favors:
+                Log.d(null, "onClick: ");
+                intent = new Intent (this, MyFavors.class);
                 intent.putExtra ("USER.TAG", me.getUserTag());
                 startActivity (intent);
                 break;

@@ -27,7 +27,8 @@
         <activity android:name=".activities.NewsFeed" />
         <activity android:name=".activities.UserProfile" />
         <activity android:name=".activities.FriendList" />
-        <activity android:name=".activities.RequestActivity"></activity>
+        <activity android:name=".activities.RequestActivity" />
+        <activity android:name=".activities.MyFavors" />
     </application>
 
 </manifest>

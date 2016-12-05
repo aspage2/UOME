@@ -8,11 +8,30 @@ public class User {
     private String password;
     private ArrayList<Transaction> history;
     private ArrayList<Favor> favors;
+    private ArrayList<Favor> myJobs;
     private ArrayList<User> friends;
     private String userTag;
     private int userProfileResource;
     private int level;
     private int progress;
+
+    public User (String fName, String lName, String password, String userTag, int level, int progress, int profilePicResource)
+    {
+        this.userProfileResource = profilePicResource;
+
+        this.fName = fName;
+        this.lName = lName;
+        this.password = password;
+        this.userTag = userTag;
+        this.level = level;
+        this.progress = progress;
+        this.history = new ArrayList<>();
+        this.friends = new ArrayList<>();
+        this.favors = new ArrayList<>();
+        this.myJobs = new ArrayList<>();
+    }
+
+    public ArrayList<Favor> getMyJobs () { return myJobs; }
 
     public ArrayList<Favor> getFavors () { return favors; }
     public int getProgress() {
@@ -31,13 +50,21 @@ public class User {
         history.add (new Transaction(f, acceptor));
     }
 
+    public void removeTransactionFromHistory(Favor f, User acceptor)
+    {
+
+    }
+
     public void createFavor (String title, int points)
     {
-        favors.add (new Favor (this, points, title));
+        favors.add(new Favor (this, points, title));
     }
+
 
     public boolean acceptFavor(Favor t)
     {
+        myJobs.add(t);
+
         progress += t.getPoints();
         if (progress >= 35)
         {
@@ -69,21 +96,6 @@ public class User {
 
     public int getUserProfileResource() {
         return userProfileResource;
-    }
-
-    public User (String fName, String lName, String password, String userTag, int level, int progress, int profilePicResource)
-    {
-        this.userProfileResource = profilePicResource;
-
-        this.fName = fName;
-        this.lName = lName;
-        this.password = password;
-        this.userTag = userTag;
-        this.level = level;
-        this.progress = progress;
-        this.history = new ArrayList<>();
-        this.friends = new ArrayList<>();
-        this.favors = new ArrayList<>();
     }
 
     public String toString()

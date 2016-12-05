@@ -32,7 +32,6 @@ public class FavorFeed extends CustomActionBarActivity
 {
     ListView favorList;
     ArrayList<Favor> favorData;
-    favorfeedAdapter adapter2;
     User me;
 
     @Override
