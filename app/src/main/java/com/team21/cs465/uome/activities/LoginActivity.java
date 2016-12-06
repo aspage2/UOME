@@ -2,17 +2,18 @@ package com.team21.cs465.uome.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.team21.cs465.uome.CustomActionBarActivity;
+import com.team21.cs465.uome.NavigationBarActivity;
 
 import com.team21.cs465.uome.Data;
 import com.team21.cs465.uome.R;
 import com.team21.cs465.uome.User;
 
-public class LoginActivity extends CustomActionBarActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText username;
     EditText password;
 
@@ -20,9 +21,6 @@ public class LoginActivity extends CustomActionBarActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        setupActionBar("Welcome", false);
-
         username = (EditText)findViewById(R.id.edit_username);
         password = (EditText)findViewById(R.id.edit_password);
         findViewById(R.id.button_sign_in).setOnClickListener(this);
@@ -36,8 +34,9 @@ public class LoginActivity extends CustomActionBarActivity implements View.OnCli
         {
             case R.id.button_sign_in:
                 if (validateCredentials (username.getText().toString(), password.getText().toString())) {
-                    Intent intent = new Intent(this, NavigationActivity.class);
+                    Intent intent = new Intent(this, UserProfile.class);
                     intent.putExtra("USER.TAG", username.getText().toString());
+                    intent.putExtra("USER.ISME", true);
                     startActivity(intent);
                 }
                 else if (username.getText().toString().isEmpty())
@@ -53,8 +52,6 @@ public class LoginActivity extends CustomActionBarActivity implements View.OnCli
                 else
                     Toast.makeText(this, "A recovery email was sent to "+username.getText().toString(), Toast.LENGTH_SHORT).show();
                 break;
-            default:
-                super.onClick (v);
         }
     }
 

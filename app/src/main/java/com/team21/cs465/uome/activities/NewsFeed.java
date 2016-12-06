@@ -11,38 +11,35 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.team21.cs465.uome.CustomActionBarActivity;
+import com.team21.cs465.uome.NavigationBarActivity;
 import com.team21.cs465.uome.Data;
-import com.team21.cs465.uome.Favor;
 import com.team21.cs465.uome.R;
 import com.team21.cs465.uome.Transaction;
 import com.team21.cs465.uome.User;
 
 import java.util.ArrayList;
 
-import static com.team21.cs465.uome.Data.*;
 /**
  * Created by Collin on 11/12/16.
  *
  * The Favor Feed controller. Displays a list of favors that a user can choose to accept
  */
 
-public class NewsFeed extends CustomActionBarActivity
+public class NewsFeed extends NavigationBarActivity
 {
     User me;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.news_feed_view);
 
         me = Data.getUser(getIntent().getExtras().getString("USER.TAG"));
+        setupNavigation(me, R.id.toolbar, R.layout.news_feed_view);
         ListView favorList = (ListView) findViewById(R.id.news_table);
         ArrayList<Transaction> newsData = new ArrayList<Transaction>();
         fillNewsData(newsData);
         favorfeedAdapter adapter = new favorfeedAdapter(this, newsData);
         favorList.setAdapter(adapter);
 
-        setupActionBar("Transaction Feed", true);
     }
 
     public void fillNewsData(ArrayList<Transaction> data){
@@ -94,34 +91,4 @@ public class NewsFeed extends CustomActionBarActivity
             return newsCell;
         }
     }
-
-
-    public void favorClicked(View v){
-
-        System.out.println("Favor clicked");
-    }
-
-    public void likeClicked(View v){
-        LinearLayout c = (LinearLayout)v.getParent();
-        Button like_label = (Button)c.findViewById(R.id.news_like_name);
-
-        if (v.getBackground().getConstantState()==getResources().getDrawable(R.drawable.like_icon).getConstantState()){
-            v.setBackgroundResource(R.drawable.like_icon_blue);
-            like_label.setText(me.getfName()); //TODO - replace Collin W. with actual user's name
-        }
-        else{
-            v.setBackground(getResources().getDrawable(R.drawable.like_icon));
-            like_label.setText("");
-        }
-    }
-
-    public void likedNamesClicked(View v){
-        // TODO - show a list of who liked the post
-    }
-
-    public void commentClicked(View v){
-        // TODO - show separate view for users to leave/view comments
-    }
-
-
 }

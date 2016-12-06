@@ -7,26 +7,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.team21.cs465.uome.CustomActionBarActivity;
+import com.team21.cs465.uome.FriendListAdapter;
+import com.team21.cs465.uome.NavigationBarActivity;
 import com.team21.cs465.uome.Data;
 import com.team21.cs465.uome.R;
 import com.team21.cs465.uome.User;
 
-import java.util.ArrayList;
-
-public class FriendList extends CustomActionBarActivity implements AdapterView.OnItemClickListener{
+public class FriendList extends NavigationBarActivity implements AdapterView.OnItemClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friend_list);
-        setupActionBar("Friend List", true);
-
 
         Intent intent = getIntent();
         User user = Data.getUser(intent.getExtras().getString("USER.TAG"));
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.friend_recycler_view);
+        setupNavigation (user, R.id.toolbar, R.layout.activity_friend_list);
+
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.friend_list_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new FriendListAdapter(user.getFriends()));

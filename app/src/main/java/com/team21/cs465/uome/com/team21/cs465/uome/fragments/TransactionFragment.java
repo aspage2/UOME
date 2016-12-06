@@ -14,7 +14,7 @@ import com.team21.cs465.uome.R;
 import com.team21.cs465.uome.Transaction;
 
 
-public class TransactionFragment extends Fragment implements View.OnClickListener {
+public class TransactionFragment extends Fragment {
 
     public TransactionFragment() {
         // Required empty public constructor
@@ -41,34 +41,7 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
             +args.getString("USER.ACCEPT")+" "+args.getInt("FAVOR.POINTS")+ " points for:");
         ((TextView)ret.findViewById(R.id.news_title)).setText(args.getString("FAVOR.TITLE"));
 
-
-        ret.findViewById(R.id.news_like_button).setOnClickListener(this);
-        //ret.findViewById(R.id.news_comment_button).setOnClickListener(this);
         return ret;
 
-    }
-
-    @Override
-    public void onClick (View v)
-    {
-        switch (v.getId())
-        {
-            case R.id.news_like_button:
-                likeClicked(v);
-        }
-    }
-
-    public void likeClicked(View v){
-        LinearLayout c = (LinearLayout)v.getParent();
-        Button like_label = (Button)c.findViewById(R.id.news_like_name);
-
-        if (v.getBackground().getConstantState()==getResources().getDrawable(R.drawable.like_icon).getConstantState()){
-            v.setBackgroundResource(R.drawable.like_icon_blue);
-            like_label.setText("Collin W."); //TODO - replace Collin W. with actual user's name
-        }
-        else{
-            v.setBackground(getResources().getDrawable(R.drawable.like_icon));
-            like_label.setText("");
-        }
     }
 }

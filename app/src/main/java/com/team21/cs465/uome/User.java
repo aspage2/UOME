@@ -50,14 +50,10 @@ public class User {
         history.add (new Transaction(f, acceptor));
     }
 
-    public void removeTransactionFromHistory(Favor f, User acceptor)
-    {
 
-    }
-
-    public void createFavor (String title, int points)
+    public void createFavor (String title, int points, String desc)
     {
-        favors.add(new Favor (this, points, title));
+        favors.add(new Favor (this, points, title, desc));
     }
 
 

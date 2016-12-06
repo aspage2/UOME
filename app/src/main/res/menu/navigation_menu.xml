@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="My Profile"
+        android:id="@+id/action_my_profile" />
+    <item android:title="People"
+        android:id="@+id/action_friend_list" />
+    <item android:title="My Transactions"
+        android:id="@+id/action_transactions" />
+    <item android:id="@+id/action_news_feed"
+        android:title="News Feed" />
+    <item android:title="Favor Feed"
+        android:id="@+id/action_favor_feed" />
+    <item android:title="New Request"
+        android:id="@+id/action_request" />
+    <item android:title="Log Out..."
+        android:id="@+id/action_logout" />
+</menu>

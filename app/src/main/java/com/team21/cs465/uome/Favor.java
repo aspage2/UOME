@@ -5,11 +5,19 @@ public class Favor {
     private User requester;
     private int points;
     private String title;
-
-    public Favor(User requester, int points, String favor){
+    private String description;
+    public Favor (User requester, int points, String favor)
+    {
         this.requester = requester;
         this.points = points;
         this.title = favor;
+        this.description = "<No Description>";
+    }
+    public Favor(User requester, int points, String favor, String description){
+        this.requester = requester;
+        this.points = points;
+        this.title = favor;
+        this.description = description;
     }
 
 
@@ -29,6 +37,8 @@ public class Favor {
     }
 
     public User getRequester () {return requester;}
+
+    public String getDescription () { return description; }
 
 
 

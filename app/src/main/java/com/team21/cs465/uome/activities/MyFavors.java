@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.team21.cs465.uome.CustomActionBarActivity;
+import com.team21.cs465.uome.NavigationBarActivity;
 import com.team21.cs465.uome.Data;
 import com.team21.cs465.uome.Favor;
 import com.team21.cs465.uome.R;
@@ -21,11 +21,7 @@ import com.team21.cs465.uome.User;
 
 import java.util.ArrayList;
 
-/**
- * Created by Collin on 12/3/16.
- */
-
-public class MyFavors extends CustomActionBarActivity {
+public class MyFavors extends NavigationBarActivity {
 
 
     ListView favorList;
@@ -39,21 +35,20 @@ public class MyFavors extends CustomActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_favors_view);
-        favorList = (ListView) findViewById(R.id.myfavors_listview);
         me = Data.getUser(getIntent().getExtras().getString("USER.TAG"));
 
+        setupNavigation (me, R.id.toolbar, R.layout.my_favors_view);
+        favorList = (ListView) findViewById(R.id.myfavors_listview);
         myJobs = new ArrayList<>();
         myRequests = new ArrayList<>();
         fillRequestsData(myRequests);
         fillJobsData(myJobs);
         data = new ArrayList<>();
-        data.addAll(myJobs);
+        data.addAll(myRequests);
 
         adapter = new myFavorsAdapter(this, data);
         favorList.setAdapter(adapter);
 
-        setupActionBar("My Favors", true);
     }
 
     public void fillRequestsData(ArrayList<Favor> data){

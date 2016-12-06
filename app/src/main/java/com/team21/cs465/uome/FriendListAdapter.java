@@ -1,4 +1,4 @@
-package com.team21.cs465.uome.activities;
+package com.team21.cs465.uome;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.team21.cs465.uome.User;
-
-import com.team21.cs465.uome.R;
+import com.team21.cs465.uome.activities.UserProfile;
 
 import java.util.ArrayList;
 

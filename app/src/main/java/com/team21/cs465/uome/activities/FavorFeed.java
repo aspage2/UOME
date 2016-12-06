@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.team21.cs465.uome.CustomActionBarActivity;
+import com.team21.cs465.uome.NavigationBarActivity;
 import com.team21.cs465.uome.Data;
 import com.team21.cs465.uome.Favor;
 import com.team21.cs465.uome.R;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * The Favor Feed controller. Displays a list of favors that a user can choose to accept
  */
 
-public class FavorFeed extends CustomActionBarActivity
+public class FavorFeed extends NavigationBarActivity
 {
     ListView favorList;
     ArrayList<Favor> favorData;
@@ -37,16 +37,15 @@ public class FavorFeed extends CustomActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.favor_feed_view);
+        me = Data.getUser(getIntent().getExtras().getString("USER.TAG"));
+
+        setupNavigation(me, R.id.toolbar, R.layout.favor_feed_view);
 
         favorList = (ListView) findViewById(R.id.favor_table);
         favorData = new ArrayList<>();
-        me = Data.getUser(getIntent().getExtras().getString("USER.TAG"));
         fillFavorData(favorData);
         favorfeedAdapter adapter = new favorfeedAdapter(this, favorData);
         favorList.setAdapter(adapter);
-
-        setupActionBar("Favor Feed", true);
     }
 
 
@@ -139,7 +138,7 @@ public class FavorFeed extends CustomActionBarActivity
         String nameText = "<b>" + "Name: " + "</b> " + fav.getName (true);
         String favorText = "<b>" + "Favor: " + "</b> " + fav.getTitle();
         String pointText = "<b>" + "Points: " + "</b> " + fav.getPoints();
-        String descriptionText = "<b>" + "Description: " + "</b> " + "Example description";
+        String descriptionText = "<b>" + "Description: " + "</b> " + fav.getDescription();
         name.setText(Html.fromHtml(nameText));
         title.setText(Html.fromHtml(favorText));
         points.setText(Html.fromHtml(pointText));
